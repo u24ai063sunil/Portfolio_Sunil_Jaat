@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Home.css';
+import { getTechMeta } from './techData';
 
 const Home = () => {
   const [displayText, setDisplayText] = useState('');
@@ -119,17 +120,22 @@ const Home = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 }}
               >
-                {skills.map((skill, index) => (
-                  <motion.span
-                    key={skill}
-                    className="skill-tag"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.5 + index * 0.03 }}
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+                {skills.map((skill, index) => {
+                    const { color, icon } = getTechMeta(skill);
+                    return (
+                      <motion.span
+                        key={skill}
+                        className="skill-tag"
+                        style={{ '--tag-color': color }}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1.5 + index * 0.03 }}
+                      >
+                        <span className="skill-icon" style={{ color }}>{icon}</span>
+                        <span className="skill-label">{skill}</span>
+                      </motion.span>
+                    );
+                  })}
               </motion.div>
 
               <div className="terminal-line" style={{ marginTop: '2rem' }}>

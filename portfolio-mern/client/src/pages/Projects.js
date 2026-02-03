@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import './Projects.css';
+import { getTechMeta } from './techData';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -149,9 +150,15 @@ const Projects = () => {
                   <p>{project.description}</p>
                   
                   <div className="tech-stack">
-                    {project.technologies.map((tech, i) => (
-                      <span key={i} className="tech-tag">{tech}</span>
-                    ))}
+                    {project.technologies.map((tech, i) => {
+                      const { color, icon } = getTechMeta(tech);
+                      return (
+                        <span key={i} className="tech-tag" style={{ '--tag-color': color }}>
+                          <span className="tech-tag-icon" style={{ color }}>{icon}</span>
+                          <span className="tech-tag-label">{tech}</span>
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </motion.div>
@@ -169,19 +176,24 @@ const Projects = () => {
         >
           <h2>TECH_STACK</h2>
           <div className="tech-cloud">
-            {allTechs.map((tech, index) => (
-              <motion.span
-                key={tech}
-                className="tech-bubble"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                {tech}
-              </motion.span>
-            ))}
+            {allTechs.map((tech, index) => {
+                const { color, icon } = getTechMeta(tech);
+                return (
+                  <motion.span
+                    key={tech}
+                    className="tech-bubble"
+                    style={{ '--tag-color': color }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <span className="bubble-icon" style={{ color }}>{icon}</span>
+                    <span className="bubble-label">{tech}</span>
+                  </motion.span>
+                );
+              })}
           </div>
         </motion.div>
       </div>

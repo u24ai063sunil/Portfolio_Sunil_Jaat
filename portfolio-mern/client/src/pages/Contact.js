@@ -42,10 +42,10 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { name: 'GitHub',     url: 'https://github.com',     icon: 'GH' },
-    { name: 'LinkedIn',  url: 'https://linkedin.com',   icon: 'IN' },
-    { name: 'CodeChef',  url: 'https://codechef.com',   icon: 'CC' },
-    { name: 'Email',     url: 'mailto:sunil@email.com', icon: '@'  }
+    { name: 'GitHub',     url: 'https://github.com/u24ai063sunil',     icon: 'GH' },
+    { name: 'LinkedIn',  url: 'https://www.linkedin.com/in/sunil-jaat-216052348/',   icon: 'IN' },
+    { name: 'CodeForces',  url: 'https://codeforces.com/profile/Sunil_j',   icon: 'CF' },
+    { name: 'Email',     url: 'mailto:suniljaat2911@gmail.com', icon: '@'  }
   ];
 
   return (
