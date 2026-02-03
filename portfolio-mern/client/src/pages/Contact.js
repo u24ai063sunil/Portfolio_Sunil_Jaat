@@ -42,10 +42,10 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { name: 'GitHub', url: 'https://github.com', icon: 'GH' },
-    { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'IN' },
-    { name: 'Twitter', url: 'https://twitter.com', icon: 'TW' },
-    { name: 'Email', url: 'mailto:your@email.com', icon: '@' }
+    { name: 'GitHub',     url: 'https://github.com',     icon: 'GH' },
+    { name: 'LinkedIn',  url: 'https://linkedin.com',   icon: 'IN' },
+    { name: 'CodeChef',  url: 'https://codechef.com',   icon: 'CC' },
+    { name: 'Email',     url: 'mailto:sunil@email.com', icon: '@'  }
   ];
 
   return (
@@ -53,6 +53,7 @@ const Contact = () => {
       <div className="grid-bg"></div>
 
       <div className="container">
+        {/* ── Header ── */}
         <motion.div
           className="contact-header"
           initial={{ opacity: 0, y: 50 }}
@@ -60,11 +61,8 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="terminal-prompt">
-            <span className="prompt">user@portfolio</span>
-            <span className="separator">:</span>
-            <span className="path">~/contact</span>
-            <span className="dollar">$</span>
-            <span className="command"> ./send_message.sh</span>
+            <span className="prompt">C:\Users\SunilJaat\Contact</span>
+            <span className="command">&gt; send_message.bat</span>
           </div>
 
           <h1>GET_IN_TOUCH</h1>
@@ -73,7 +71,10 @@ const Contact = () => {
           </p>
         </motion.div>
 
+        {/* ── Two-column body ── */}
         <div className="contact-content">
+
+          {/* ── Left: form inside a Windows terminal shell ── */}
           <motion.div
             className="contact-form-container"
             initial={{ opacity: 0, x: -50 }}
@@ -81,19 +82,21 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="form-terminal">
+              {/* Windows title-bar */}
               <div className="terminal-header">
-                <div className="terminal-buttons">
-                  <span className="btn-close"></span>
-                  <span className="btn-minimize"></span>
-                  <span className="btn-maximize"></span>
-                </div>
                 <span className="terminal-title">contact-form.js</span>
+                <div className="terminal-buttons">
+                  <span className="btn-minimize">_</span>
+                  <span className="btn-maximize">□</span>
+                  <span className="btn-close">×</span>
+                </div>
               </div>
 
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
                   <label>
-                    <span className="label-prefix">const</span> name <span className="label-equals">=</span>
+                    <span className="label-prefix">const</span> name
+                    <span className="label-equals">=</span>
                   </label>
                   <input
                     type="text"
@@ -107,7 +110,8 @@ const Contact = () => {
 
                 <div className="form-group">
                   <label>
-                    <span className="label-prefix">const</span> email <span className="label-equals">=</span>
+                    <span className="label-prefix">const</span> email
+                    <span className="label-equals">=</span>
                   </label>
                   <input
                     type="email"
@@ -121,7 +125,8 @@ const Contact = () => {
 
                 <div className="form-group">
                   <label>
-                    <span className="label-prefix">const</span> message <span className="label-equals">=</span>
+                    <span className="label-prefix">const</span> message
+                    <span className="label-equals">=</span>
                   </label>
                   <textarea
                     name="message"
@@ -156,17 +161,19 @@ const Contact = () => {
             </div>
           </motion.div>
 
+          {/* ── Right: info cards ── */}
           <motion.div
             className="contact-info"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
+            {/* Social links card */}
             <div className="info-block">
               <h3>CONNECT_WITH_ME</h3>
               <p>
-                I'm always interested in hearing about new projects and opportunities.
-                Whether you have a question or just want to say hi, feel free to reach out!
+                I'm always interested in hearing about new projects, ML collaborations,
+                or competitive-programming discussions. Feel free to reach out!
               </p>
 
               <div className="social-links">
@@ -180,7 +187,7 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 + index * 0.1 }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileHover={{ scale: 1.05 }}
                   >
                     <span className="social-icon">{link.icon}</span>
                     <span className="social-name">{link.name}</span>
@@ -189,13 +196,22 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* Availability snippet card */}
             <div className="info-block code-snippet">
               <h3>AVAILABILITY</h3>
               <pre>
 {`{
+  name: "Sunil Jaat",
+  college: "SVNIT, Surat",
   status: "Open to opportunities",
-  location: "Your City, Country",
-  timezone: "UTC+0",
+  location: "Surat, Gujarat",
+  timezone: "IST (UTC+5:30)",
+  interests: [
+    "ML / DL Projects",
+    "NLP Research",
+    "Competitive Programming",
+    "Full-Stack Builds"
+  ],
   workStyle: [
     "Remote",
     "Hybrid",

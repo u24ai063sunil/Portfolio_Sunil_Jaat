@@ -26,7 +26,7 @@ const Projects = () => {
           title: 'E-Commerce Platform',
           description: 'Full-stack e-commerce application with payment integration, user authentication, and admin dashboard.',
           technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-          imageUrl: 'https://via.placeholder.com/600x400/0a0a0a/00ff41?text=E-Commerce',
+          imageUrl: 'https://via.placeholder.com/600x400/0a0a0a/00ef76?text=E-Commerce',
           projectUrl: 'https://example.com',
           githubUrl: 'https://github.com',
           featured: true
@@ -46,7 +46,7 @@ const Projects = () => {
           title: 'Task Management System',
           description: 'Kanban-style task manager with drag-and-drop, team collaboration, and progress tracking.',
           technologies: ['React', 'Node.js', 'PostgreSQL', 'Redux'],
-          imageUrl: 'https://via.placeholder.com/600x400/0a0a0a/00ff41?text=Task+Manager',
+          imageUrl: 'https://via.placeholder.com/600x400/0a0a0a/00ef76?text=Task+Manager',
           projectUrl: 'https://example.com',
           githubUrl: 'https://github.com',
           featured: false
@@ -84,11 +84,8 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="terminal-prompt">
-            <span className="prompt">user@portfolio</span>
-            <span className="separator">:</span>
-            <span className="path">~/projects</span>
-            <span className="dollar">$</span>
-            <span className="command"> ls -la</span>
+            <span className="prompt">C:\Users\Portfolio\Projects</span>
+            <span className="command">&gt; dir /a</span>
           </div>
           
           <h1>MY_PROJECTS</h1>

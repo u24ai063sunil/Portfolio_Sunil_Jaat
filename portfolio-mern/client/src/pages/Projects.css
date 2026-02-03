@@ -21,6 +21,15 @@
   border-radius: 4px;
 }
 
+.prompt {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.command {
+  color: var(--text-secondary);
+}
+
 .subtitle {
   color: var(--text-secondary);
   font-size: 1.2rem;

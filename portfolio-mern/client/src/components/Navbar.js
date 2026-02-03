@@ -32,8 +32,9 @@ const Navbar = () => {
         <div className="nav-content">
           <Link to="/" className="logo">
             <span className="bracket">{'<'}</span>
-            <span className="logo-text">DEV</span>
+            <span className="logo-text">SJ</span>
             <span className="bracket">{'/>'}</span>
+            <span className="logo-subtitle">ML Engineer</span>
           </Link>
 
           <div className="nav-links">
@@ -44,7 +45,7 @@ const Navbar = () => {
                 className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <span className="nav-prefix">$</span> {item.label}
+                <span className="nav-prefix">&gt;</span> {item.label}
               </Link>
             ))}
           </div>

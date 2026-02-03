@@ -14,6 +14,7 @@
   backdrop-filter: blur(10px);
   border-bottom: 2px solid var(--border);
   padding: 1rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-content {
@@ -28,7 +29,7 @@
   letter-spacing: 2px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   position: relative;
 }
 
@@ -45,6 +46,19 @@
 
 .logo-text {
   color: var(--text-primary);
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px var(--glow);
+}
+
+.logo-subtitle {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-left: 4px;
+  padding-left: 8px;
+  border-left: 2px solid var(--border);
+  text-transform: uppercase;
 }
 
 .nav-links {
@@ -60,11 +74,19 @@
   padding: 8px 0;
   opacity: 0;
   animation: fadeInUp 0.6s ease-out forwards;
+  transition: all 0.3s ease;
 }
 
 .nav-prefix {
-  color: var(--accent);
+  color: var(--text-primary);
   margin-right: 4px;
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover .nav-prefix {
+  transform: translateX(4px);
+  text-shadow: 0 0 10px var(--glow);
 }
 
 .nav-link::after {
@@ -76,6 +98,7 @@
   height: 2px;
   background: var(--text-primary);
   transition: width 0.3s ease;
+  box-shadow: 0 0 8px var(--glow);
 }
 
 .nav-link:hover::after,
@@ -84,7 +107,22 @@
 }
 
 .nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-link.active .nav-prefix {
   color: var(--accent);
+}
+
+/* Mobile Menu Toggle (for future implementation) */
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  padding: 8px 12px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -96,7 +134,54 @@
     font-size: 1.2rem;
   }
 
+  .logo-text {
+    font-size: 1.4rem;
+  }
+
+  .logo-subtitle {
+    display: none;
+  }
+
+  .bracket {
+    font-size: 1.6rem;
+  }
+
   .nav-link {
     font-size: 0.8rem;
+  }
+
+  .nav-prefix {
+    margin-right: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 1rem 0;
+  }
+
+  .navbar.scrolled {
+    padding: 0.75rem 0;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+  }
+
+  .bracket {
+    font-size: 1.4rem;
+  }
+
+  .nav-links {
+    gap: 0.75rem;
+  }
+
+  .nav-link {
+    font-size: 0.7rem;
+    padding: 6px 0;
   }
 }
