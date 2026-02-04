@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -26,7 +27,11 @@ const Contact = () => {
     setStatus({ type: '', message: '' });
 
     try {
-      await axios.post('/api/contacts', formData);
+      await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/contacts`,
+        formData
+      );
+      ;
       setStatus({
         type: 'success',
         message: 'Message sent successfully! I\'ll get back to you soon.'
