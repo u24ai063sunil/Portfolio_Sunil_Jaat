@@ -42,10 +42,10 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { name: 'GitHub',     url: 'https://github.com/u24ai063sunil',     icon: 'GH' },
-    { name: 'LinkedIn',  url: 'https://www.linkedin.com/in/sunil-jaat-216052348/',   icon: 'IN' },
-    { name: 'CodeForces',  url: 'https://codeforces.com/profile/Sunil_j',   icon: 'CF' },
-    { name: 'Email',     url: 'mailto:suniljaat2911@gmail.com', icon: '@'  }
+    { name: 'GitHub', url: 'https://github.com/u24ai063sunil', icon: 'GH', handle: '@u24ai063sunil' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/sunil-jaat-216052348/', icon: 'IN', handle: 'sunil-jaat' },
+    { name: 'LeetCode', url: 'https://leetcode.com/sunilj/', icon: 'LC', handle: '@sunilj' },
+    { name: 'CodeForces', url: 'https://codeforces.com/profile/Sunil_j', icon: 'CF', handle: '@Sunil_j' }
   ];
 
   return (
@@ -172,8 +172,8 @@ const Contact = () => {
             <div className="info-block">
               <h3>CONNECT_WITH_ME</h3>
               <p>
-                I'm always interested in hearing about new projects, ML collaborations,
-                or competitive-programming discussions. Feel free to reach out!
+                I'm always interested in ML collaborations, open-source contributions, 
+                competitive programming discussions, and GSoC opportunities. Feel free to reach out!
               </p>
 
               <div className="social-links">
@@ -190,9 +190,20 @@ const Contact = () => {
                     whileHover={{ scale: 1.05 }}
                   >
                     <span className="social-icon">{link.icon}</span>
-                    <span className="social-name">{link.name}</span>
+                    <div className="social-info">
+                      <span className="social-name">{link.name}</span>
+                      <span className="social-handle">{link.handle}</span>
+                    </div>
                   </motion.a>
                 ))}
+              </div>
+
+              {/* Direct email link */}
+              <div className="direct-contact">
+                <span className="contact-label">📧 Email:</span>
+                <a href="mailto:suniljaat2911@gmail.com" className="contact-link">
+                  suniljaat2911@gmail.com
+                </a>
               </div>
             </div>
 
@@ -203,23 +214,50 @@ const Contact = () => {
 {`{
   name: "Sunil Jaat",
   college: "SVNIT, Surat",
+  year: "2nd Year B.Tech AI",
   status: "Open to opportunities",
   location: "Surat, Gujarat",
   timezone: "IST (UTC+5:30)",
+  
   interests: [
-    "ML / DL Projects",
-    "NLP Research",
+    "ML / DL / NLP Research",
+    "MERN & Django Development",
     "Competitive Programming",
-    "Full-Stack Builds"
+    "Open Source (GSoC 2026)"
   ],
-  workStyle: [
-    "Remote",
-    "Hybrid",
-    "On-site"
-  ],
+  
+  platforms: {
+    leetcode: "sunilj",
+    codeforces: "Sunil_j",
+    github: "@u24ai063sunil"
+  },
+  
+  workStyle: ["Remote", "Hybrid"],
   responseTime: "24-48 hours"
 }`}
               </pre>
+            </div>
+
+            {/* Competitive Programming Stats Card */}
+            <div className="info-block cp-stats">
+              <h3>COMPETITIVE_PROGRAMMING</h3>
+              <div className="stats-grid">
+                <div className="stat-card">
+                  <span className="stat-platform">LeetCode</span>
+                  <a href="https://leetcode.com/sunilj/" target="_blank" rel="noopener noreferrer" className="stat-link">
+                    View Profile →
+                  </a>
+                </div>
+                <div className="stat-card">
+                  <span className="stat-platform">CodeForces</span>
+                  <a href="https://codeforces.com/profile/Sunil_j" target="_blank" rel="noopener noreferrer" className="stat-link">
+                    View Profile →
+                  </a>
+                </div>
+              </div>
+              <p className="stats-note">
+                Active problem solver focusing on algorithms, data structures, and competitive programming to strengthen GSoC preparation.
+              </p>
             </div>
           </motion.div>
         </div>

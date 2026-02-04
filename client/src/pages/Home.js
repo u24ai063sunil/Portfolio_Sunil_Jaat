@@ -18,7 +18,7 @@ const Home = () => {
       } else {
         clearInterval(timer);
       }
-    }, 50);
+    }, 40);
 
     return () => clearInterval(timer);
   }, []);
@@ -31,20 +31,20 @@ const Home = () => {
   }, []);
 
   const skills = [
-    'React', 'Node.js', 'MongoDB', 'Express',
-    'JavaScript', 'TypeScript', 'Python', 'TensorFlow',
-    'PyTorch', 'Scikit-learn', 'NLP', 'Computer Vision',
-    'Docker', 'AWS', 'Git', 'C++', 'Data Structures', 'Algorithms'
+    'Python', 'C', 'C++', 'JavaScript',
+    'Django', 'React', 'Node.js', 'MongoDB', 'Express', 'MySQL',
+    'NLP', 'Scikit-learn', 'Pandas', 'NumPy',
+    'Git', 'Data Structures', 'Algorithms'
   ];
 
   const education = {
-    degree: 'B.Tech Computer Science and Engineering',
+    degree: 'B.Tech Artificial Intelligence',
     college: 'SVNIT (Sardar Vallabhbhai National Institute of Technology)',
     year: '2nd Year',
     location: 'Surat, Gujarat',
-    cgpa: '9.2',
-    class12: '95%',
-    class10: '96%'
+    cgpa: '8.22',
+    class12: '82%',
+    class10: '87%'
   };
 
   const certifications = [
@@ -56,11 +56,24 @@ const Home = () => {
   ];
 
   const achievements = [
-    'Published NLP Research Papers in International Journals',
-    'CodeChef 5★ Rating',
-    'Top 100 in Multiple National Coding Competitions',
+    'Published NLP Research Papers in ACL Anthology',
+    'Active LeetCode & CodeForces Problem Solver',
     'Led ML Projects with 95%+ Accuracy',
-    'Contributed to Open Source AI Projects'
+  ];
+
+  const researchPapers = [
+    {
+      title: 'Indic Grammatical Error Correction (IndicGEC2025)',
+      venue: 'ACL Anthology - Bhasha Workshop 2025',
+      link: 'https://aclanthology.org/2025.bhasha-1.14/',
+      topics: ['NLP', 'Grammatical Error Correction', 'Indic Languages']
+    },
+    {
+      title: 'Indic Word Generation (IndicWG2025)',
+      venue: 'ACL Anthology - Bhasha Workshop 2025',
+      link: 'https://aclanthology.org/2025.bhasha-1.18/',
+      topics: ['NLP', 'Word Generation', 'Computational Linguistics']
+    }
   ];
 
   return (
@@ -188,33 +201,27 @@ const Home = () => {
   name: "Sunil Jaat",
   location: "Surat, Gujarat",
   college: "SVNIT",
-  year: "B.Tech 2nd Year",
-  branch: "Computer Science",
+  year: "B.Tech AI - 2nd Year",
   
-  interests: [
-    "Machine Learning",
-    "Deep Learning",
-    "Natural Language Processing",
-    "Competitive Programming",
+  focus: [
+    "Machine Learning & NLP",
     "Full-Stack Development",
-    "Computer Vision",
-    "Problem Solving"
+    "Competitive Programming"
   ],
   
-  currentFocus: [
-    "Building ML Models",
-    "Publishing Research Papers",
-    "Competitive Programming",
-    "Open Source Contributions"
-  ],
+  platforms: {
+    leetcode: "sunilj",
+    codeforces: "Sunil_j",
+    github: "u24ai063sunil"
+  },
   
   achievements: [
-    "Published NLP Papers",
-    "CodeChef 5★ Coder",
-    "Top 100 in National Contests"
+    "Published NLP Papers (ACL)",
+    "Active CP Solver",
+    "Open Source Contributor"
   ],
   
-  motto: "Code, Compete, Create 🚀"
+  motto: "Learn, Build, Contribute 🚀"
 };
 
 console.log(developer);`}
@@ -222,20 +229,19 @@ console.log(developer);`}
               </div>
               <div className="about-text">
                 <p>
-                  I'm Sunil Jaat, a passionate Computer Science student at SVNIT, Surat, 
-                  currently in my 2nd year of B.Tech. I specialize in Machine Learning, 
-                  Deep Learning, and Full-Stack Development with the MERN stack.
+                  I'm Sunil Jaat, a 2nd-year B.Tech AI student at SVNIT, Surat. 
+                  I'm passionate about Machine Learning, NLP research, and building 
+                  full-stack applications with Django and the MERN stack.
                 </p>
                 <p>
-                  My journey spans across multiple domains - from building intelligent ML 
-                  models and conducting NLP research to solving complex algorithmic challenges 
-                  in competitive programming. I've published research papers in Natural Language 
-                  Processing and consistently perform in top ranks in national coding competitions.
+                  I've published research papers in Natural Language Processing (ACL Anthology) 
+                  focusing on Indic language processing, and I actively solve problems on 
+                  LeetCode and CodeForces to strengthen my algorithmic thinking.
                 </p>
                 <p>
-                  When I'm not training models or debugging code, you'll find me participating 
-                  in hackathons, contributing to open-source projects, or exploring the latest 
-                  advancements in AI/ML technologies.
+                  When I'm not coding or researching, you'll find me contributing to collaborative 
+                  projects, participating in hackathons, or exploring the latest advancements 
+                  in AI/ML technologies.
                 </p>
               </div>
             </div>
@@ -243,8 +249,8 @@ console.log(developer);`}
         </div>
       </section>
 
-      {/* Education Section */}
-      <section className="education-section">
+      {/* Research Publications Section */}
+      <section className="research-section">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -252,83 +258,34 @@ console.log(developer);`}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2>EDUCATION</h2>
-            <div className="education-grid">
-              <motion.div 
-                className="education-card main-education"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="edu-header">
-                  <div className="edu-icon">🎓</div>
-                  <div className="edu-title-section">
-                    <h3>{education.degree}</h3>
-                    <p className="edu-college">{education.college}</p>
+            <h2>RESEARCH_PUBLICATIONS</h2>
+            <p className="section-subtitle">
+              Published papers in Natural Language Processing focused on Indic language processing
+            </p>
+            <div className="research-grid">
+              {researchPapers.map((paper, index) => (
+                <motion.div
+                  key={index}
+                  className="research-card"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2 }}
+                  whileHover={{ y: -5, boxShadow: '0 0 30px rgba(168, 85, 247, 0.3)' }}
+                >
+                  <div className="research-icon">📝</div>
+                  <h3>{paper.title}</h3>
+                  <p className="research-venue">{paper.venue}</p>
+                  <div className="research-topics">
+                    {paper.topics.map((topic, i) => (
+                      <span key={i} className="topic-tag">{topic}</span>
+                    ))}
                   </div>
-                </div>
-                <div className="edu-details">
-                  <div className="edu-info">
-                    <span className="info-label">Current Year:</span>
-                    <span className="info-value">{education.year}</span>
-                  </div>
-                  <div className="edu-info">
-                    <span className="info-label">Location:</span>
-                    <span className="info-value">{education.location}</span>
-                  </div>
-                  <div className="edu-info highlight">
-                    <span className="info-label">CGPA:</span>
-                    <span className="info-value">{education.cgpa}/10.0</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="education-card"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <div className="edu-header">
-                  <div className="edu-icon">📚</div>
-                  <h3>Class XII (Senior Secondary)</h3>
-                </div>
-                <div className="edu-details">
-                  <div className="edu-info highlight">
-                    <span className="info-label">Percentage:</span>
-                    <span className="info-value">{education.class12}</span>
-                  </div>
-                  <div className="edu-info">
-                    <span className="info-label">Board:</span>
-                    <span className="info-value">CBSE</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="education-card"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
-                <div className="edu-header">
-                  <div className="edu-icon">📖</div>
-                  <h3>Class X (Secondary)</h3>
-                </div>
-                <div className="edu-details">
-                  <div className="edu-info highlight">
-                    <span className="info-label">Percentage:</span>
-                    <span className="info-value">{education.class10}</span>
-                  </div>
-                  <div className="edu-info">
-                    <span className="info-label">Board:</span>
-                    <span className="info-value">CBSE</span>
-                  </div>
-                </div>
-              </motion.div>
+                  <a href={paper.link} target="_blank" rel="noopener noreferrer" className="research-link">
+                    Read Paper →
+                  </a>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -364,7 +321,7 @@ console.log(developer);`}
         </div>
       </section>
 
-      {/* Research & Achievements Section */}
+      {/* Achievements Section */}
       <section className="achievements-section">
         <div className="container">
           <motion.div
@@ -373,39 +330,111 @@ console.log(developer);`}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2>RESEARCH_&_ACHIEVEMENTS</h2>
-            <div className="achievements-content">
-              <div className="research-block">
-                <h3>📝 Published Research Papers</h3>
-                <p className="research-desc">
-                  Contributed to the field of Natural Language Processing with published 
-                  research papers in international journals, focusing on innovative 
-                  approaches to text analysis and language understanding.
-                </p>
-                <div className="research-tags">
-                  <span className="tag">Natural Language Processing</span>
-                  <span className="tag">Machine Learning</span>
-                  <span className="tag">Deep Learning</span>
-                  <span className="tag">Research</span>
+            <h2>KEY_ACHIEVEMENTS</h2>
+            <div className="achievements-list">
+              {achievements.map((achievement, index) => (
+                <motion.div
+                  key={index}
+                  className="achievement-item"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <span className="achievement-bullet">▸</span>
+                  <span>{achievement}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      {/* Education Section */}
+      <section className="education-section">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2>EDUCATION</h2>
+            <div className="education-grid">
+              <motion.div 
+                className="education-card main-education"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="edu-header">
+                  <div className="edu-icon"></div>
+                  <div className="edu-title-section">
+                    <h3>{education.degree}</h3>
+                    <p className="edu-college">{education.college}</p>
+                  </div>
                 </div>
-              </div>
+                <div className="edu-details">
+                  <div className="edu-info">
+                    <span className="info-label">Current Year:</span>
+                    <span className="info-value">{education.year}</span>
+                  </div>
+                  <div className="edu-info">
+                    <span className="info-label">Location:</span>
+                    <span className="info-value">{education.location}</span>
+                  </div>
+                  <div className="edu-info highlight">
+                    <span className="info-label">CGPA:</span>
+                    <span className="info-value">{education.cgpa}/10.0</span>
+                  </div>
+                </div>
+              </motion.div>
 
-              <div className="achievements-list">
-                <h3>🏆 Key Achievements</h3>
-                {achievements.map((achievement, index) => (
-                  <motion.div
-                    key={index}
-                    className="achievement-item"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <span className="achievement-bullet">▸</span>
-                    <span>{achievement}</span>
-                  </motion.div>
-                ))}
-              </div>
+              <motion.div 
+                className="education-card"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="edu-header">
+                  <div className="edu-icon"></div>
+                  <h3>Class XII (Senior Secondary)</h3>
+                </div>
+                <div className="edu-details">
+                  <div className="edu-info highlight">
+                    <span className="info-label">Percentage:</span>
+                    <span className="info-value">{education.class12}</span>
+                  </div>
+                  <div className="edu-info">
+                    <span className="info-label">Board:</span>
+                    <span className="info-value">GSEB</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="education-card"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <div className="edu-header">
+                  <div className="edu-icon"></div>
+                  <h3>Class X (Secondary)</h3>
+                </div>
+                <div className="edu-details">
+                  <div className="edu-info highlight">
+                    <span className="info-label">Percentage:</span>
+                    <span className="info-value">{education.class10}</span>
+                  </div>
+                  <div className="edu-info">
+                    <span className="info-label">Board:</span>
+                    <span className="info-value">GSEB</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>

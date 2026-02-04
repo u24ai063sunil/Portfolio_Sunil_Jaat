@@ -272,16 +272,16 @@
 
 .social-link {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: 1.4rem 1rem;
+  justify-content: flex-start;
+  padding: 1.4rem 1.2rem;
   background: rgba(0, 0, 0, 0.4);
   border: 2px solid var(--border);
   border-radius: 6px;
   transition: all 0.3s ease;
-  text-align: center;
-  gap: 8px;
+  text-align: left;
+  gap: 12px;
 }
 
 .social-link:hover {
@@ -295,13 +295,119 @@
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.social-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .social-name {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.social-handle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Direct Contact */
+.direct-contact {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid var(--text-primary);
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.contact-link {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+/* Competitive Programming Stats */
+.cp-stats {
+  border: 2px solid var(--accent);
+}
+
+.cp-stats h3 {
+  color: var(--accent);
+}
+
+.cp-stats h3::before {
+  color: var(--accent);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.stat-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--accent);
+  background: rgba(255, 0, 128, 0.05);
+}
+
+.stat-platform {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-link {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.stat-link:hover {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.stats-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
 }
 
 /* ─── code snippet card ─── */

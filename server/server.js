@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/projects', require('./routes/projects'));
 app.use('/api/contacts', require('./routes/contacts'));
 
 // Health check

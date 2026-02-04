@@ -18,6 +18,24 @@ const techMap = {
     )
   },
 
+  HTML: {
+    color: '#e34f26',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2l1.5 17L12 22l7.5-3L21 2H3zm14.5 6h-11l.3 3h10.4l-.8 9-5.4 2-5.4-2-.3-4h2.6l.2 2 2.9 1 2.9-1 .3-3.5H6.5L5.8 5h12.4l-.7 3z"/>
+      </svg>
+    )
+  },
+
+  CSS: {
+    color: '#1572b6',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2l1.5 17L12 22l7.5-3L21 2H3zm11 6H8.5l.3 3h5l-.8 6-2.5 1-2.5-1-.2-2h-2.3l.3 4 4.7 2 4.7-2 .6-8H14l.2-3z"/>
+      </svg>
+    )
+  },
+
   'Node.js': {
     color: '#68a51c',
     icon: (
@@ -81,6 +99,61 @@ const techMap = {
     )
   },
 
+  Django: {
+    color: '#092e20',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 3h3v15.5c-1.5.5-2.5.5-4 .5-4 0-6-2-6-5.5 0-3.5 2.5-5.5 6-5.5.5 0 1 0 1 .2V3zm0 8.5c-.3 0-.5-.1-.8-.1-1.5 0-2.2.8-2.2 2.3 0 1.5.7 2.3 2.2 2.3.3 0 .5 0 .8-.1v-4.4zM13 2h3v3h-3V2zm0 4h3v13h-3V6z"/>
+        <path d="M17 6h3c0 4.5 0 7.5 1 9.5.7 1.5 1.5 2 3 2v3c-2 0-3.5-.5-4.5-2C18 16.5 17 13 17 6z"/>
+      </svg>
+    )
+  },
+
+  MySQL: {
+    color: '#4479a1',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.5 10c-3 0-5 2-5 5s2 5 5 5c1.5 0 2.8-.5 3.8-1.5l1.2 1.2c-1.3 1.3-3 2-5 2-4 0-7-3-7-7s3-7 7-7c2 0 3.7.8 5 2l-1.2 1.2c-1-1-2.3-1.5-3.8-1.5z"/>
+        <circle cx="6" cy="15" r="3"/>
+      </svg>
+    )
+  },
+
+  Flask: {
+    color: '#000000',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3v6L7 14c-1 2-1 4 0 6h10c1-2 1-4 0-6l-3-5V3"/>
+        <path d="M8 3h8"/>
+      </svg>
+    )
+  },
+
+  NumPy: {
+    color: '#4dabcf',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="7" height="7" rx="1"/>
+        <rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/>
+        <rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    )
+  },
+
+  Pandas: {
+    color: '#150458',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="3" width="3" height="8"/>
+        <rect x="5" y="13" width="3" height="8"/>
+        <rect x="11" y="3" width="3" height="18"/>
+        <rect x="16" y="3" width="3" height="8"/>
+        <rect x="16" y="13" width="3" height="8"/>
+      </svg>
+    )
+  },
+
   /* ─── ML / AI ─── */
   TensorFlow: {
     color: '#ff7000',
@@ -137,6 +210,19 @@ const techMap = {
     )
   },
 
+  Research: {
+    color: '#a855f7',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+    )
+  },
+
   /* ─── DevOps / Tools ─── */
   Docker: {
     color: '#2496ed',
@@ -180,6 +266,16 @@ const techMap = {
         <path d="M14 9v6"/>
         <path d="M11 12h6"/>
         <path d="M17 9v6"/>
+      </svg>
+    )
+  },
+
+  C: {
+    color: '#555555',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M16 8c-2-2-6-2-8 0s-2 6 0 8"/>
       </svg>
     )
   },
