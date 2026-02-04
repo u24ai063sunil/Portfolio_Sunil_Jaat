@@ -145,7 +145,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-footer">
-                  <span className="code-comment">Send the message</span>
+                  <span className="code-comment">/* Send the message */</span>
                   <button type="submit" disabled={loading}>
                     {loading ? 'SENDING...' : 'SEND_MESSAGE()'}
                   </button>
