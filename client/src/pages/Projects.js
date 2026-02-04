@@ -5,7 +5,9 @@ import { getTechMeta } from './techData';
 import iplImg from '../images/ipl-match-predictor.png';
 import eduace from '../images/eduace.png';
 import rabuste from '../images/rabuste.png';
-import rangriti from '../images/rangriti.png'
+import rangriti from '../images/rangriti.png';
+import Footer from '../components/Footer';
+
 const PROJECTS_DATA = [
   {
     _id: '1',
@@ -195,6 +197,7 @@ const Projects = () => {
           </div>
         </motion.div>
       </div>
+      <Footer/>
     </div>
   );
 };

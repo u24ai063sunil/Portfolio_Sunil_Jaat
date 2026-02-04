@@ -3,6 +3,16 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Home.css';
 import { getTechMeta } from './techData';
+import aiMl from '../images/certificates/AI_ML.jpeg';
+import ctrlSpace from '../images/certificates/CTRL+Space.jpeg';
+import datathon from '../images/certificates/datathon.png';
+import echelon from '../images/certificates/Echelon.jpeg';
+import mindSprint from '../images/certificates/mind_sprints.jpeg';
+import acmWinter from '../images/certificates/acm_winter.png';
+import bitQuiz from '../images/certificates/bitquiz.png';
+import codeWars from '../images/certificates/code_wars.png';
+import webWonders from '../images/certificates/web_wonders.png';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const [displayText, setDisplayText] = useState('');
@@ -48,12 +58,17 @@ const Home = () => {
   };
 
   const certifications = [
-    'Deep Learning Specialization - Coursera',
-    'Machine Learning - Stanford Online',
-    'Competitive Programming - CodeChef',
-    'AWS Certified Solutions Architect',
-    'Advanced Data Structures & Algorithms'
+    aiMl,
+    webWonders,
+    codeWars,
+    acmWinter,
+    datathon,
+    ctrlSpace,
+    echelon,
+    mindSprint,
+    bitQuiz
   ];
+
 
   const achievements = [
     'Published NLP Research Papers in ACL Anthology',
@@ -310,12 +325,16 @@ console.log(developer);`}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -5, boxShadow: '0 0 30px rgba(0, 239, 118, 0.3)' }}
+                  whileHover={{ scale: 1.03 }}
                 >
-                  <div className="cert-icon">✓</div>
-                  <p>{cert}</p>
+                  <img
+                    src={cert}
+                    alt={`Certificate ${index + 1}`}
+                    className="certificate-image"
+                  />
                 </motion.div>
               ))}
+
             </div>
           </motion.div>
         </div>
@@ -439,6 +458,7 @@ console.log(developer);`}
           </motion.div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

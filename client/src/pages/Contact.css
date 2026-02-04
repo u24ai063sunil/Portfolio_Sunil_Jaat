@@ -1,7 +1,9 @@
 /* ─── layout ─── */
 .contact-page {
   min-height: 100vh;
-  padding: 120px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  padding: 120px 20px 0;
   position: relative;
 }
 
