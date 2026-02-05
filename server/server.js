@@ -12,7 +12,7 @@ connectDB();
 // Middleware
 app.use(cors({
   origin: [
-    'https://portfolio-sunil-jaat.vercel.app',   // frontend
+    'https://sunil-jaat-portfolio.vercel.app',   // frontend
     'http://localhost:3000'                      // local dev
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
