@@ -303,15 +303,27 @@ const Contact = () => {
     setStatus({ type: '', message: '' });
 
     try {
+      // const res = await axios.post(
+      //   `${process.env.REACT_APP_API_BASE_URL}/api/contacts`,
+      //   formData,
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     }
+      //   }
+      // );
       const res = await axios.post(
-        `${process.env.REACT_APP_API_BASE_URL}/api/contacts`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+  `${process.env.REACT_APP_API_BASE_URL}/api/contacts`,
+  {
+    name: formData.name.trim(),
+    email: formData.email.trim(),
+    message: formData.message.trim(),
+  },
+  {
+    headers: { 'Content-Type': 'application/json' }
+  }
+);
+
 
       // ✅ CHECK BACKEND RESPONSE
       if (res.data && res.data.success) {
