@@ -258,4 +258,54 @@ exports.createContact = async (req, res) => {
     });
   }
 };
+/* ===============================
+   GET ALL CONTACTS (ADMIN)
+================================ */
+exports.getAllContacts = async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+
+    return res.status(200).json({
+      success: true,
+      data: contacts
+    });
+  } catch (error) {
+    console.error('Get Contacts Error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+};
+
+/* ===============================
+   MARK AS READ
+================================ */
+exports.markAsRead = async (req, res) => {
+  try {
+    const contact = await Contact.findByIdAndUpdate(
+      req.params.id,
+      { read: true },
+      { new: true }
+    );
+
+    if (!contact) {
+      return res.status(404).json({
+        success: false,
+        message: 'Contact not found'
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: contact
+    });
+  } catch (error) {
+    console.error('Mark Read Error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+};
 
