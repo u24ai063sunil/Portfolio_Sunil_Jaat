@@ -272,7 +272,7 @@
 //     </div>
 //   );
 // };
-
+/* eslint-disable react/jsx-no-comment-textnodes */
 // export default Contact;
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
