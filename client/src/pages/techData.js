@@ -100,7 +100,7 @@ const techMap = {
   },
 
   Django: {
-    color: '#092e20',
+    color: '#44b78b',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 3h3v15.5c-1.5.5-2.5.5-4 .5-4 0-6-2-6-5.5 0-3.5 2.5-5.5 6-5.5.5 0 1 0 1 .2V3zm0 8.5c-.3 0-.5-.1-.8-.1-1.5 0-2.2.8-2.2 2.3 0 1.5.7 2.3 2.2 2.3.3 0 .5 0 .8-.1v-4.4zM13 2h3v3h-3V2zm0 4h3v13h-3V6z"/>
@@ -120,7 +120,7 @@ const techMap = {
   },
 
   Flask: {
-    color: '#000000',
+    color: '#e5e7eb',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
         <path d="M10 3v6L7 14c-1 2-1 4 0 6h10c1-2 1-4 0-6l-3-5V3"/>
@@ -142,7 +142,7 @@ const techMap = {
   },
 
   Pandas: {
-    color: '#150458',
+    color: '#e70488',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <rect x="5" y="3" width="3" height="8"/>
@@ -271,7 +271,7 @@ const techMap = {
   },
 
   C: {
-    color: '#555555',
+    color: '#a8b9cc',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="9"/>
@@ -368,6 +368,166 @@ const techMap = {
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
         <polyline points="3 17 7 13 11 15 15 9 19 11"/>
         <line x1="3" y1="20" x2="21" y2="20"/>
+      </svg>
+    )
+  },
+
+  /* ─── added for the newer projects ─── */
+  Rust: {
+    color: '#dea584',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="8"/>
+        <circle cx="12" cy="12" r="10" strokeDasharray="2 2.2"/>
+        <path d="M9 16V8h4a2 2 0 0 1 0 4H9m3 0 3 4"/>
+      </svg>
+    )
+  },
+
+  Serde: {
+    color: '#f0a87e',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"/>
+        <path d="M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>
+      </svg>
+    )
+  },
+
+  FastAPI: {
+    color: '#05b39a',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1 17v-6H7l6-8v6h4l-6 8z"/>
+      </svg>
+    )
+  },
+
+  Redis: {
+    color: '#dc382d',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 8l10-4 10 4-10 4-10-4z"/>
+        <path d="M2 12l10 4 10-4"/>
+        <path d="M2 16l10 4 10-4"/>
+      </svg>
+    )
+  },
+
+  'Tailwind CSS': {
+    color: '#38bdf8',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 6c-2.7 0-4.3 1.3-5 4 1-1.3 2.2-1.8 3.5-1.5.8.2 1.3.7 1.9 1.3 1 1 2.1 2.2 4.6 2.2 2.7 0 4.3-1.3 5-4-1 1.3-2.2 1.8-3.5 1.5-.8-.2-1.3-.7-1.9-1.3C15.6 7.2 14.5 6 12 6zm-5 6c-2.7 0-4.3 1.3-5 4 1-1.3 2.2-1.8 3.5-1.5.8.2 1.3.7 1.9 1.3 1 1 2.1 2.2 4.6 2.2 2.7 0 4.3-1.3 5-4-1 1.3-2.2 1.8-3.5 1.5-.8-.2-1.3-.7-1.9-1.3C10.6 13.2 9.5 12 7 12z"/>
+      </svg>
+    )
+  },
+
+  YOLOv8: {
+    color: '#22d3ee',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+        <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+        <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+        <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+        <rect x="8" y="8" width="8" height="8" rx="1"/>
+      </svg>
+    )
+  },
+
+  OpenCV: {
+    color: '#8b7bff',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="6" r="3.5"/>
+        <circle cx="6" cy="17" r="3.5"/>
+        <circle cx="18" cy="17" r="3.5"/>
+      </svg>
+    )
+  },
+
+  Streamlit: {
+    color: '#ff4b4b',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3L2 19h20L12 3zm0 5l5.5 9h-11L12 8z"/>
+      </svg>
+    )
+  },
+
+  Plotly: {
+    color: '#7a76ff',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="12" width="3" height="8" rx="1"/>
+        <rect x="10.5" y="7" width="3" height="13" rx="1"/>
+        <rect x="17" y="3" width="3" height="17" rx="1"/>
+      </svg>
+    )
+  },
+
+  LLMs: {
+    color: '#e8956f',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3z"/>
+        <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/>
+      </svg>
+    )
+  },
+
+  'Vector Search': {
+    color: '#2dd4bf',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="6"/>
+        <path d="M21 21l-6.5-6.5"/>
+        <circle cx="8" cy="9" r="1" fill="currentColor"/>
+        <circle cx="12" cy="11" r="1" fill="currentColor"/>
+        <circle cx="10" cy="7" r="1" fill="currentColor"/>
+      </svg>
+    )
+  },
+
+  MCP: {
+    color: '#f472b6',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 7V3m6 4V3"/>
+        <path d="M6 7h12v4a6 6 0 0 1-12 0V7z"/>
+        <path d="M12 17v4"/>
+      </svg>
+    )
+  },
+
+  JWT: {
+    color: '#d63aff',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8" cy="15" r="4"/>
+        <path d="M10.8 12.2L20 3m-3 3l3 3m-6-0l3 3"/>
+      </svg>
+    )
+  },
+
+  Recharts: {
+    color: '#ff6384',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="3 17 7 13 11 15 15 9 19 11"/>
+        <line x1="3" y1="20" x2="21" y2="20"/>
+      </svg>
+    )
+  },
+
+  SQL: {
+    color: '#4479a1',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="12" cy="5" rx="7" ry="2.5"/>
+        <path d="M5 5v14c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V5"/>
+        <path d="M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/>
       </svg>
     )
   }

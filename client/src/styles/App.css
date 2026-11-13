@@ -256,3 +256,115 @@ h2::before {
 .slide-in-left {
   animation: slideInLeft 0.6s ease-out forwards;
 }
+
+/* ─── Button-styled links (use on <a>/<Link>, never nest <button> in <a>) ─── */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 2px solid;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text-primary);
+  box-shadow: 0 0 20px var(--glow);
+  text-shadow: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.35);
+  text-shadow: none;
+}
+
+/* ─── Accessibility ─── */
+:focus-visible {
+  outline: 2px dashed var(--accent);
+  outline-offset: 3px;
+}
+
+strong {
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── 404 page ─── */
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+.not-found-body h1 {
+  font-size: clamp(5rem, 20vw, 10rem);
+  text-shadow: 0 0 30px var(--glow);
+}
+
+.not-found-msg {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  word-break: break-word;
+}
+
+.not-found-msg code {
+  color: var(--accent);
+}
+
+.not-found-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ─── Small screens: keep long snake_case headings inside the viewport ─── */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    overflow-wrap: anywhere;
+  }
+}

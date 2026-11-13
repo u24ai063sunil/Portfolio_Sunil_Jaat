@@ -28,9 +28,18 @@
   color: #9ca3af;
 }
 
+.footer-subtext a {
+  color: #00ef76;
+}
+
+.footer-links span {
+  color: #4b5563;
+}
+
 .footer-links {
   margin-top: 0.8rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
   font-size: 0.85rem;

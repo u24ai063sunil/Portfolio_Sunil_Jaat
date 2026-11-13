@@ -6,7 +6,7 @@ A modern, brutalist-terminal aesthetic portfolio website built with the MERN sta
 
 - **Unique Design**: Brutalist-terminal aesthetic with glitch effects and scanlines
 - **Fully Responsive**: Works seamlessly on all devices
-- **Dynamic Projects**: MongoDB-backed project showcase
+- **Project Showcase**: 12 projects driven by a single data file (`client/src/data/projects.js`) with category filters, search and a tech-usage cloud
 - **Contact Form**: Integrated email notifications with Nodemailer
 - **Smooth Animations**: Framer Motion for buttery-smooth transitions
 - **SEO Friendly**: Optimized metadata and structure

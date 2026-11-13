@@ -39,6 +39,11 @@
   margin: 0 auto;
 }
 
+/* let grid columns shrink below their content (the <pre> snippet scrolls instead) */
+.contact-content > * {
+  min-width: 0;
+}
+
 /* ─── Windows terminal chrome ─── */
 .form-terminal {
   background: rgba(17, 17, 17, 0.95);

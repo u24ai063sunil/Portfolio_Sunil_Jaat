@@ -185,3 +185,17 @@
     padding: 6px 0;
   }
 }
+/* Very narrow phones: drop the "> " prefixes so all three links fit */
+@media (max-width: 420px) {
+  .nav-prefix {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 0.9rem;
+  }
+
+  .bracket {
+    font-size: 1.2rem;
+  }
+}

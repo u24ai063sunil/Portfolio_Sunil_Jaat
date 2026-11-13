@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Home.css';
 import { getTechMeta } from './techData';
+import PROJECTS, { FEATURED_PROJECTS } from '../data/projects';
+import ProjectCard from '../components/ProjectCard';
 import aiMl from '../images/certificates/AI_ML.jpeg';
 import ctrlSpace from '../images/certificates/CTRL+Space.jpeg';
 import datathon from '../images/certificates/datathon.png';
@@ -14,90 +16,176 @@ import codeWars from '../images/certificates/code_wars.png';
 import webWonders from '../images/certificates/web_wonders.png';
 import Footer from '../components/Footer';
 
+/* ───────────────────────── Content ───────────────────────── */
+
+const ROLE_TEXT = 'ML ENGINEER | FULL-STACK DEVELOPER | NLP RESEARCHER';
+
+const SKILL_GROUPS = [
+  { label: 'languages', items: ['Python', 'C++', 'C', 'JavaScript', 'Rust', 'SQL'] },
+  {
+    label: 'ai_ml',
+    items: ['NLP', 'LLMs', 'Vector Search', 'YOLOv8', 'OpenCV', 'Scikit-learn', 'Pandas', 'NumPy']
+  },
+  {
+    label: 'web_backend',
+    items: ['React', 'Node.js', 'Express', 'FastAPI', 'Django', 'MongoDB', 'MySQL', 'Redis', 'Socket.io']
+  },
+  { label: 'tools_cs', items: ['Git', 'Docker', 'Streamlit', 'Data Structures', 'Algorithms'] }
+];
+
+const EDUCATION = {
+  degree: 'B.Tech Artificial Intelligence',
+  college: 'SVNIT (Sardar Vallabhbhai National Institute of Technology)',
+  year: '3rd Year',
+  location: 'Surat, Gujarat',
+  cgpa: '8.22',
+  class12: '82%',
+  class10: '87%'
+};
+
+const CERTIFICATIONS = [
+  { src: aiMl, name: 'AI / ML' },
+  { src: webWonders, name: 'Web Wonders' },
+  { src: codeWars, name: 'Code Wars' },
+  { src: acmWinter, name: 'ACM Winter' },
+  { src: datathon, name: 'Datathon' },
+  { src: ctrlSpace, name: 'CTRL + Space' },
+  { src: echelon, name: 'Echelon' },
+  { src: mindSprint, name: 'Mind Sprints' },
+  { src: bitQuiz, name: 'BitQuiz' }
+];
+
+const RESEARCH_PAPERS = [
+  {
+    title:
+      'Team Horizon at BHASHA Task 1: Multilingual IndicGEC with Transformer-based Grammatical Error Correction Models',
+    authors: 'Manav Dhamecha, Gaurav Damor, Sunil Jaat, Pruthwik Mishra',
+    venue: 'Proceedings of BHASHA 2025 · ACL Anthology',
+    link: 'https://aclanthology.org/2025.bhasha-1.14/',
+    code: 'https://github.com/u24ai063sunil/IndicGEC2025',
+    topics: ['NLP', 'Grammatical Error Correction', 'Indic Languages', 'Transformers']
+  },
+  {
+    title:
+      'Team Horizon at BHASHA Task 2: Fine-tuning Multilingual Transformers for Indic Word Grouping',
+    authors: 'Manav Dhamecha, Gaurav Damor, Sunil Jaat, Pruthwik Mishra',
+    venue: 'Proceedings of BHASHA 2025 · ACL Anthology',
+    link: 'https://aclanthology.org/2025.bhasha-1.18/',
+    code: 'https://github.com/u24ai063sunil/IndicWG2025',
+    topics: ['NLP', 'Word Grouping', 'Multilingual Transformers', 'Indic Languages']
+  }
+];
+
+const HACKATHON_COUNT = 3;
+
+const EXPERIENCE = [
+  {
+    tag: 'HACKATHON',
+    when: '2026',
+    title: 'ACM RVCE Code Cup — Computer Vision Track',
+    detail:
+      'Built Tactics Cam with a team of 4: a YOLOv8 + ByteTrack pipeline that turns football broadcast footage into team shape and zone-occupancy analytics (mAP50 0.815, 98% team-label consistency).',
+    link: 'https://github.com/u24ai063sunil/VisionX'
+  },
+  {
+    tag: 'HACKATHON',
+    title: 'MongoDB Student Hackathon — Agentic Memory Track',
+    detail:
+      "Built TeamBrain, a shared long-term memory layer for a team's AI agents using Atlas Vector Search, Change Streams, TTL indexes and an MCP server.",
+    link: 'https://github.com/u24ai063sunil/teambrain'
+  },
+  {
+    tag: 'HACKATHON',
+    title: 'Atomberg Hackathon 1.0',
+    detail:
+      'Built AtomQuest, an enterprise goal-cascading and performance management portal with three-role approval workflows and Google SSO.',
+    link: 'https://atomberg-web-portal.vercel.app'
+  },
+  {
+    tag: 'INTERNSHIP',
+    title: 'SVNIT Transportation Cell — G-TRISP',
+    detail:
+      'Built a road-accident blackspot dashboard (DBSCAN + KDE over 1,500 records) and a YOLOv8x + ByteTrack vehicle-trajectory extraction pipeline.',
+    link: 'https://github.com/u24ai063sunil/G-TRISP_G1_T2'
+  },
+  {
+    tag: 'RESEARCH',
+    when: '2025',
+    title: 'BHASHA Workshop @ ACL — Shared Tasks',
+    detail:
+      'Co-authored two papers as Team Horizon on Indic grammatical error correction and Indic word grouping with multilingual transformers.',
+    link: 'https://aclanthology.org/2025.bhasha-1.14/'
+  },
+  {
+    tag: 'COMPETITIVE',
+    title: 'LeetCode & Codeforces',
+    detail: 'Regular problem solving to keep data structures and algorithms sharp.',
+    link: 'https://leetcode.com/sunilj/'
+  }
+];
+
+const STATS = [
+  { value: PROJECTS.length, label: 'Projects shipped' },
+  { value: RESEARCH_PAPERS.length, label: 'ACL papers' },
+  { value: HACKATHON_COUNT, label: 'Hackathon builds' },
+  { value: CERTIFICATIONS.length, label: 'Certifications' }
+];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 50 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6 }
+};
+
+/* ───────────────────────── Component ───────────────────────── */
+
 const Home = () => {
   const [displayText, setDisplayText] = useState('');
-  const fullText = 'FULL-STACK DEVELOPER | ML ENGINEER | COMPETITIVE PROGRAMMER';
   const [showCursor, setShowCursor] = useState(true);
+  const [activeCert, setActiveCert] = useState(null);
 
   useEffect(() => {
     let index = 0;
     const timer = setInterval(() => {
-      if (index < fullText.length) {
-        setDisplayText(fullText.slice(0, index + 1));
+      if (index < ROLE_TEXT.length) {
+        setDisplayText(ROLE_TEXT.slice(0, index + 1));
         index++;
       } else {
         clearInterval(timer);
       }
     }, 40);
-
     return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
-    const cursorTimer = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
+    const cursorTimer = setInterval(() => setShowCursor((prev) => !prev), 500);
     return () => clearInterval(cursorTimer);
   }, []);
 
-  const skills = [
-    'Python', 'C', 'C++', 'JavaScript',
-    'Django', 'React', 'Node.js', 'MongoDB', 'Express', 'MySQL',
-    'NLP', 'Scikit-learn', 'Pandas', 'NumPy',
-    'Git', 'Data Structures', 'Algorithms'
-  ];
+  const closeCert = useCallback(() => setActiveCert(null), []);
 
-  const education = {
-    degree: 'B.Tech Artificial Intelligence',
-    college: 'SVNIT (Sardar Vallabhbhai National Institute of Technology)',
-    year: '2nd Year',
-    location: 'Surat, Gujarat',
-    cgpa: '8.22',
-    class12: '82%',
-    class10: '87%'
-  };
+  useEffect(() => {
+    if (!activeCert) return undefined;
+    const onKey = (e) => e.key === 'Escape' && closeCert();
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [activeCert, closeCert]);
 
-  const certifications = [
-    aiMl,
-    webWonders,
-    codeWars,
-    acmWinter,
-    datathon,
-    ctrlSpace,
-    echelon,
-    mindSprint,
-    bitQuiz
-  ];
-
-
-  const achievements = [
-    'Published NLP Research Papers in ACL Anthology',
-    'Active LeetCode & CodeForces Problem Solver',
-    'Led ML Projects with 95%+ Accuracy',
-  ];
-
-  const researchPapers = [
-    {
-      title: 'Indic Grammatical Error Correction (IndicGEC2025)',
-      venue: 'ACL Anthology - Bhasha Workshop 2025',
-      link: 'https://aclanthology.org/2025.bhasha-1.14/',
-      topics: ['NLP', 'Grammatical Error Correction', 'Indic Languages']
-    },
-    {
-      title: 'Indic Word Generation (IndicWG2025)',
-      venue: 'ACL Anthology - Bhasha Workshop 2025',
-      link: 'https://aclanthology.org/2025.bhasha-1.18/',
-      topics: ['NLP', 'Word Generation', 'Computational Linguistics']
-    }
-  ];
+  let skillIndex = 0;
 
   return (
     <div className="home">
       <div className="grid-bg"></div>
-      
+
+      {/* ── Hero ── */}
       <section className="hero">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="terminal-window"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -105,20 +193,20 @@ const Home = () => {
           >
             <div className="terminal-header">
               <span className="terminal-title">Command Prompt - portfolio</span>
-              <div className="terminal-buttons">
+              <div className="terminal-buttons" aria-hidden="true">
                 <span className="btn-minimize">_</span>
                 <span className="btn-maximize">□</span>
                 <span className="btn-close">×</span>
               </div>
             </div>
-            
+
             <div className="terminal-body">
               <div className="terminal-line">
                 <span className="prompt">C:\Users\SunilJaat</span>
                 <span className="command">&gt; whoami</span>
               </div>
-              
-              <motion.h1 
+
+              <motion.h1
                 className="hero-title"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -126,44 +214,59 @@ const Home = () => {
               >
                 SUNIL JAAT
               </motion.h1>
-              
+
               <div className="terminal-line">
                 <span className="prompt">C:\Users\SunilJaat</span>
                 <span className="command">&gt; type role.txt</span>
               </div>
-              
-              <div className="role-display">
+
+              <div className="role-display" aria-label={ROLE_TEXT}>
                 {displayText}
                 {showCursor && <span className="cursor-inline">_</span>}
               </div>
 
+              <p className="hero-summary">
+                B.Tech AI @ SVNIT Surat. I build LLM memory systems, computer-vision pipelines and
+                production-style full-stack apps — and publish NLP research along the way.
+              </p>
+
               <div className="terminal-line" style={{ marginTop: '2rem' }}>
                 <span className="prompt">C:\Users\SunilJaat</span>
-                <span className="command">&gt; dir skills</span>
+                <span className="command">&gt; tree skills</span>
               </div>
 
-              <motion.div 
-                className="skills-grid"
+              <motion.div
+                className="skill-groups"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
+                transition={{ delay: 1.2 }}
               >
-                {skills.map((skill, index) => {
-                    const { color, icon } = getTechMeta(skill);
-                    return (
-                      <motion.span
-                        key={skill}
-                        className="skill-tag"
-                        style={{ '--tag-color': color }}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.5 + index * 0.03 }}
-                      >
-                        <span className="skill-icon" style={{ color }}>{icon}</span>
-                        <span className="skill-label">{skill}</span>
-                      </motion.span>
-                    );
-                  })}
+                {SKILL_GROUPS.map((group) => (
+                  <div className="skill-group" key={group.label}>
+                    <span className="skill-group-label">├── {group.label}/</span>
+                    <div className="skills-grid">
+                      {group.items.map((skill) => {
+                        const { color, icon } = getTechMeta(skill);
+                        const delay = 1.2 + skillIndex++ * 0.025;
+                        return (
+                          <motion.span
+                            key={skill}
+                            className="skill-tag"
+                            style={{ '--tag-color': color }}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay }}
+                          >
+                            <span className="skill-icon" style={{ color }}>
+                              {icon}
+                            </span>
+                            <span className="skill-label">{skill}</span>
+                          </motion.span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </motion.div>
 
               <div className="terminal-line" style={{ marginTop: '2rem' }}>
@@ -171,24 +274,32 @@ const Home = () => {
                 <span className="command">&gt; explore.bat</span>
               </div>
 
-              <motion.div 
+              <motion.div
                 className="cta-buttons"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2 }}
               >
-                <Link to="/projects">
-                  <button className="btn-primary">VIEW_PROJECTS</button>
+                <Link to="/projects" className="btn-primary">
+                  VIEW_PROJECTS
                 </Link>
-                <Link to="/contact">
-                  <button className="btn-secondary">CONTACT_ME</button>
+                <Link to="/contact" className="btn-secondary">
+                  CONTACT_ME
                 </Link>
+                <a
+                  href="https://github.com/u24ai063sunil"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  GITHUB ↗
+                </a>
               </motion.div>
             </div>
           </motion.div>
 
           {/* Floating elements */}
-          <div className="floating-brackets">
+          <div className="floating-brackets" aria-hidden="true">
             <span className="float-elem bracket-1">{'{'}</span>
             <span className="float-elem bracket-2">{'}'}</span>
             <span className="float-elem bracket-3">{'<'}</span>
@@ -199,15 +310,31 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* ── Stats strip ── */}
+      <section className="stats-section">
+        <div className="container">
+          <div className="stats-strip">
+            {STATS.map((s, i) => (
+              <motion.div
+                key={s.label}
+                className="stat-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <span className="stat-value">{s.value}</span>
+                <span className="stat-label">{s.label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── About ── */}
       <section className="about-section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div {...fadeUp}>
             <h2>ABOUT_ME</h2>
             <div className="about-content">
               <div className="code-block">
@@ -216,26 +343,27 @@ const Home = () => {
   name: "Sunil Jaat",
   location: "Surat, Gujarat",
   college: "SVNIT",
-  year: "B.Tech AI - 2nd Year",
-  
+  year: "B.Tech AI - 3rd Year",
+
   focus: [
-    "Machine Learning & NLP",
-    "Full-Stack Development",
-    "Competitive Programming"
+    "LLM agents & long-term memory",
+    "Computer vision",
+    "NLP research (Indic languages)",
+    "Full-stack & backend systems"
   ],
-  
+
   platforms: {
     leetcode: "sunilj",
     codeforces: "Sunil_j",
     github: "u24ai063sunil"
   },
-  
+
   achievements: [
-    "Published NLP Papers (ACL)",
-    "Active CP Solver",
-    "Open Source Contributor"
+    "2 papers @ BHASHA 2025 (ACL)",
+    "${HACKATHON_COUNT} hackathon builds",
+    "${PROJECTS.length} projects on GitHub"
   ],
-  
+
   motto: "Learn, Build, Contribute 🚀"
 };
 
@@ -244,19 +372,19 @@ console.log(developer);`}
               </div>
               <div className="about-text">
                 <p>
-                  I'm Sunil Jaat, a 2nd-year B.Tech AI student at SVNIT, Surat. 
-                  I'm passionate about Machine Learning, NLP research, and building 
-                  full-stack applications with Django and the MERN stack.
+                  I'm Sunil Jaat, a 3rd-year B.Tech AI student at SVNIT, Surat. I like building
+                  systems end to end — from the model to the API to the UI people actually use.
                 </p>
                 <p>
-                  I've published research papers in Natural Language Processing (ACL Anthology) 
-                  focusing on Indic language processing, and I actively solve problems on 
-                  LeetCode and CodeForces to strengthen my algorithmic thinking.
+                  Lately that has meant <strong>LLM memory systems</strong> (TeamBrain, Long Memory
+                  AI), <strong>computer-vision pipelines</strong> (football tactics analytics and
+                  traffic tracking with YOLOv8 + ByteTrack), and <strong>production-style web
+                  apps</strong> with real-time sync, queues and caching. I've also written a
+                  multithreaded key-value server in Rust to go deeper on systems.
                 </p>
                 <p>
-                  When I'm not coding or researching, you'll find me contributing to collaborative 
-                  projects, participating in hackathons, or exploring the latest advancements 
-                  in AI/ML technologies.
+                  On the research side I've co-authored two NLP papers in the ACL Anthology on Indic
+                  language processing, and I keep my fundamentals sharp on LeetCode and Codeforces.
                 </p>
               </div>
             </div>
@@ -264,41 +392,108 @@ console.log(developer);`}
         </div>
       </section>
 
-      {/* Research Publications Section */}
+      {/* ── Featured projects ── */}
+      <section className="featured-section">
+        <div className="container">
+          <motion.div {...fadeUp}>
+            <h2>FEATURED_PROJECTS</h2>
+            <p className="section-subtitle">
+              A few recent builds — AI agents, computer vision and production-grade full-stack.
+            </p>
+          </motion.div>
+          <div className="featured-grid">
+            {FEATURED_PROJECTS.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} compact />
+            ))}
+          </div>
+          <div className="featured-more">
+            <Link to="/projects" className="btn-primary">
+              VIEW_ALL_{PROJECTS.length}_PROJECTS →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Experience & hackathons ── */}
+      <section className="experience-section">
+        <div className="container">
+          <motion.div {...fadeUp}>
+            <h2>EXPERIENCE_&amp;_HACKATHONS</h2>
+          </motion.div>
+          <ol className="timeline">
+            {EXPERIENCE.map((item, index) => (
+              <motion.li
+                key={item.title}
+                className="timeline-item"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+              >
+                <span className="timeline-dot" aria-hidden="true" />
+                <div className="timeline-meta">
+                  <span className={`timeline-tag tag-${item.tag.toLowerCase()}`}>{item.tag}</span>
+                  {item.when && <span className="timeline-when">{item.when}</span>}
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+                {item.link && (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" className="timeline-link">
+                    View →
+                  </a>
+                )}
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ── Research ── */}
       <section className="research-section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div {...fadeUp}>
             <h2>RESEARCH_PUBLICATIONS</h2>
             <p className="section-subtitle">
-              Published papers in Natural Language Processing focused on Indic language processing
+              Shared-task papers on NLP for Indic languages, published in the ACL Anthology
             </p>
             <div className="research-grid">
-              {researchPapers.map((paper, index) => (
+              {RESEARCH_PAPERS.map((paper, index) => (
                 <motion.div
-                  key={index}
+                  key={paper.link}
                   className="research-card"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  whileHover={{ y: -5, boxShadow: '0 0 30px rgba(168, 85, 247, 0.3)' }}
                 >
-                  <div className="research-icon">📝</div>
+                  <div className="research-icon" aria-hidden="true">📝</div>
                   <h3>{paper.title}</h3>
+                  <p className="research-authors">
+                    {paper.authors.split('Sunil Jaat').map((part, i, arr) => (
+                      <React.Fragment key={i}>
+                        {part}
+                        {i < arr.length - 1 && <strong>Sunil Jaat</strong>}
+                      </React.Fragment>
+                    ))}
+                  </p>
                   <p className="research-venue">{paper.venue}</p>
                   <div className="research-topics">
-                    {paper.topics.map((topic, i) => (
-                      <span key={i} className="topic-tag">{topic}</span>
+                    {paper.topics.map((topic) => (
+                      <span key={topic} className="topic-tag">
+                        {topic}
+                      </span>
                     ))}
                   </div>
-                  <a href={paper.link} target="_blank" rel="noopener noreferrer" className="research-link">
-                    Read Paper →
-                  </a>
+                  <div className="research-links">
+                    <a href={paper.link} target="_blank" rel="noopener noreferrer" className="research-link">
+                      Read Paper →
+                    </a>
+                    {paper.code && (
+                      <a href={paper.code} target="_blank" rel="noopener noreferrer" className="research-link">
+                        View Code →
+                      </a>
+                    )}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -306,159 +501,134 @@ console.log(developer);`}
         </div>
       </section>
 
-      {/* Certifications Section */}
+      {/* ── Certifications ── */}
       <section className="certifications-section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div {...fadeUp}>
             <h2>CERTIFICATIONS</h2>
+            <p className="section-subtitle">Click any certificate to view it full size.</p>
             <div className="certifications-grid">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={index}
+              {CERTIFICATIONS.map((cert, index) => (
+                <motion.button
+                  type="button"
+                  key={cert.name}
                   className="cert-card"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.03 }}
+                  transition={{ delay: Math.min(index * 0.08, 0.5) }}
+                  onClick={() => setActiveCert(cert)}
+                  aria-label={`View ${cert.name} certificate`}
                 >
                   <img
-                    src={cert}
-                    alt={`Certificate ${index + 1}`}
+                    src={cert.src}
+                    alt={`${cert.name} certificate`}
                     className="certificate-image"
+                    loading="lazy"
                   />
-                </motion.div>
+                  <span className="cert-caption">{cert.name}</span>
+                </motion.button>
               ))}
-
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <section className="achievements-section">
-        <div className="container">
+      <AnimatePresence>
+        {activeCert && (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            className="cert-lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${activeCert.name} certificate`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeCert}
           >
-            <h2>KEY_ACHIEVEMENTS</h2>
-            <div className="achievements-list">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  className="achievement-item"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <span className="achievement-bullet">▸</span>
-                  <span>{achievement}</span>
-                </motion.div>
-              ))}
-            </div>
+            <motion.figure
+              initial={{ scale: 0.92 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.92 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={activeCert.src} alt={`${activeCert.name} certificate`} />
+              <figcaption>
+                {activeCert.name}
+                <button type="button" className="lightbox-close" onClick={closeCert} autoFocus>
+                  CLOSE [ESC]
+                </button>
+              </figcaption>
+            </motion.figure>
           </motion.div>
-        </div>
-      </section>
-      {/* Education Section */}
+        )}
+      </AnimatePresence>
+
+      {/* ── Education ── */}
       <section className="education-section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div {...fadeUp}>
             <h2>EDUCATION</h2>
             <div className="education-grid">
-              <motion.div 
-                className="education-card main-education"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
+              <div className="education-card main-education">
                 <div className="edu-header">
-                  <div className="edu-icon"></div>
                   <div className="edu-title-section">
-                    <h3>{education.degree}</h3>
-                    <p className="edu-college">{education.college}</p>
+                    <h3>{EDUCATION.degree}</h3>
+                    <p className="edu-college">{EDUCATION.college}</p>
                   </div>
                 </div>
                 <div className="edu-details">
                   <div className="edu-info">
                     <span className="info-label">Current Year:</span>
-                    <span className="info-value">{education.year}</span>
+                    <span className="info-value">{EDUCATION.year}</span>
                   </div>
                   <div className="edu-info">
                     <span className="info-label">Location:</span>
-                    <span className="info-value">{education.location}</span>
+                    <span className="info-value">{EDUCATION.location}</span>
                   </div>
                   <div className="edu-info highlight">
                     <span className="info-label">CGPA:</span>
-                    <span className="info-value">{education.cgpa}/10.0</span>
+                    <span className="info-value">{EDUCATION.cgpa}/10.0</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="education-card"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
+              <div className="education-card">
                 <div className="edu-header">
-                  <div className="edu-icon"></div>
                   <h3>Class XII (Senior Secondary)</h3>
                 </div>
                 <div className="edu-details">
                   <div className="edu-info highlight">
                     <span className="info-label">Percentage:</span>
-                    <span className="info-value">{education.class12}</span>
+                    <span className="info-value">{EDUCATION.class12}</span>
                   </div>
                   <div className="edu-info">
                     <span className="info-label">Board:</span>
                     <span className="info-value">GSEB</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="education-card"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
+              <div className="education-card">
                 <div className="edu-header">
-                  <div className="edu-icon"></div>
                   <h3>Class X (Secondary)</h3>
                 </div>
                 <div className="edu-details">
                   <div className="edu-info highlight">
                     <span className="info-label">Percentage:</span>
-                    <span className="info-value">{education.class10}</span>
+                    <span className="info-value">{EDUCATION.class10}</span>
                   </div>
                   <div className="edu-info">
                     <span className="info-label">Board:</span>
                     <span className="info-value">GSEB</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-// export default Contact;
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -58,7 +57,7 @@ const Contact = () => {
       console.error('Contact form error:', error);
       setStatus({
         type: 'error',
-        message: 'Failed to send message. Please try again.'
+        message: 'Failed to send message. Please try again, or email me directly at suniljaat2911@gmail.com.'
       });
     } finally {
       setLoading(false);
@@ -196,8 +195,8 @@ const Contact = () => {
             <div className="info-block">
               <h3>CONNECT_WITH_ME</h3>
               <p>
-                I'm always interested in ML collaborations, open-source contributions, 
-                competitive programming discussions, and GSoC opportunities. Feel free to reach out!
+                I'm open to internships, research collaborations, hackathon teams and open-source work
+                in ML, LLM systems and full-stack development. Feel free to reach out!
               </p>
 
               <div className="social-links">
@@ -238,16 +237,17 @@ const Contact = () => {
 {`{
   name: "Sunil Jaat",
   college: "SVNIT, Surat",
-  year: "2nd Year B.Tech AI",
+  year: "3rd Year B.Tech AI",
   status: "Open to opportunities",
   location: "Surat, Gujarat",
   timezone: "IST (UTC+5:30)",
   
   interests: [
-    "ML / DL / NLP Research",
-    "MERN & Django Development",
-    "Competitive Programming",
-    "Open Source (GSoC 2026)"
+    "LLM agents & memory systems",
+    "Computer vision",
+    "NLP research (Indic languages)",
+    "Full-stack & backend engineering",
+    "Open source"
   ],
   
   platforms: {
@@ -280,7 +280,7 @@ const Contact = () => {
                 </div>
               </div>
               <p className="stats-note">
-                Active problem solver focusing on algorithms, data structures, and competitive programming to strengthen GSoC preparation.
+                Active problem solver focusing on algorithms and data structures.
               </p>
             </div>
           </motion.div>
